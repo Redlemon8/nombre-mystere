@@ -19,20 +19,30 @@
         </section>
     </header>
     <main>
-        <section id="new-game">
-            <h2 id="title">Nouvelle Partie</h2>
+        <section id="new-game" class="step">
+            <h2 class="title">Nouvelle Partie</h2>
             <button id="started">Commencer</button>
+        </section>
+        <section id="game">
+            <h2 class="title">Choisissez un nombre entre 1 et 50</h2>
+            <label for="number"><input type="number" id="number"></label>
+        </section>
+        <!--<section id="mode" class="step">
+            <h2 id="title">Choisissez la difficulté</h2>
             <div id="difficulty-button">
-                <button id="first-difficulty">1 - 50</button>
-                <button id="second-difficulty">1 - 100</button>
-                <button id="third-difficulty">1 - 150</button>
+                <button id="difficulty-easy">1 - 50</button>
+                <button id="difficulty-intermediate">1 - 100</button>
+                <button id="difficulty-hard">1 - 150</button>
             </div>
         </section>
-        <section id="mode">
-            <h1 id="title-mode">Difficulté choisis</h1>
-            <label for="number">Enter a number</label>
-            <input type="number" name="number" max-length="2"/>
+        <section id="mode-selected">
+            <h2 id="nombre-mystere">Le nombre est entre</h2>
+            <div id="number-selection">
+                <label for="number">Le nombre mystère (1-50):</label>
+                <input type="number" id="number" name="tentacles" min="1" max="50" />
+            </div>
         </section>
+        -->
     </main>
 
     

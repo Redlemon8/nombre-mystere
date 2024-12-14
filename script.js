@@ -1,26 +1,47 @@
 const started = document.getElementById("started");
 started.addEventListener("click", startGame);
+const game = document.getElementById("game").style.display = "none";
+KeyboardEvent: key='Enter';
 
-const firstDifficulty = document.getElementById('first-difficulty').style.display = 'none';
-const secondDifficulty = document.getElementById('second-difficulty').style.display = 'none';
-const thirdDifficulty = document.getElementById('third-difficulty').style.display = 'none';
+let max = 51;
+let again = true;
+
 
 console.log('before startGame function');
 
 function startGame() {
-    document.getElementById("title").innerHTML = "Difficulté";
-    document.getElementById("started").style.display = "none";
-    document.getElementById("first-difficulty").style.display = "block";
-    document.getElementById("second-difficulty").style.display = "block";
-    document.getElementById("third-difficulty").style.display = "block";
-
+    document.getElementById("new-game").style.display = "none";
+    document.getElementById("game").style.display = "block";
     console.log('cliked');
 }
 
-const newGame = document.getElementById("new-game");
+function findTheNumber() {
+    console.log('we have to find the number');
+    /* START THE LOOP */
+    while (again === true) {
+    console.log('are we here ?');
+                /* GENERATE A RANDOM NUMBER */
+        function getRandomInt(max) {
 
+            
+            return Math.floor(Math.random() * max);
+        }
+        
+        console.log(`le nombre mystère est : ${getRandomInt(max)}`);
+        
+        let numberPlayer = document.getElementById("number-player");
 
-function mode() {
-    
+        while (numberPlayer != getRandomInt(max)) {
+            if (numberPlayer < getRandomInt(max)) {
+                document.getElementsByClassName('title').textContent = `C/'est plus !`;
+                console.log("c/'est plus !");
+            } else if (numberPlayer > getRandomInt(max)) {
+                document.getElementsByClassName('title').textContent = `C/'est moins !`;
+                console.log("c/'est moins !");
+            } else {
+                document.getElementsByClassName('title').textContent = `Bravo vous avez trouvez le nombre mystère !`;
+                console ('vous avez trouvez le nombre mystère !');
+            }
+        }
+    }
 }
-
