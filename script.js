@@ -3,9 +3,31 @@ started.addEventListener("click", startGame);
 const game = document.getElementById("game").style.display = "none";
 KeyboardEvent: key='Enter';
 
-let max = 51;
+let max = 50;
 let again = true;
 
+let value = null;
+
+async function lireValeur() {
+  return new Promise(resolve => {
+
+    addForm();
+    
+    const idInterval = setInterval(() => {
+      if (value !== null) {
+        clearInterval(idInterval);
+        removeForm();
+
+        // pour avoir le temps de voir le formulaire disparaître avant l'affichage d'un éventuel alert
+        setTimeout(() => {
+            resolve(value);
+            value = null;
+        }, 50);
+      }
+    }, 500);
+
+  });
+}
 
 console.log('before startGame function');
 
