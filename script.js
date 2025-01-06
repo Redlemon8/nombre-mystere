@@ -1,61 +1,44 @@
-const started = document.getElementById("started");
-started.addEventListener("click", startGame);
-const game = document.getElementById("game").style.display = "none";
-KeyboardEvent: key='Enter';
+const clue = [];
 
-
-console.log('before startGame function');
-
-function startGame() {
-    document.getElementById("new-game").style.display = "none";
-    document.getElementById("game").style.display = "block";
-    console.log('cliked');
+function displayClue (clueText) {
+    clue.push(clueText);
+    let message = '';
+    for (let i = 0; i < clue.length; i = i + 1) {
+       console.log(clue);
+        message = clue[i];
+    }
+    const gameClue = document.querySelector('h2');
+    gameClue.textContent = message;
 }
 
-    async function play() {
+async function play() {
+    console.log('j\'ai été envoyé par hardMode button');
+    let response;
+    const max = 500;
+    const game = {
+        nombreMystere: Math.floor(Math.random() * (max + 1)),
+        counter: 0,
+    };
+    console.log(game.nombreMystere);
 
-            const max = 500;
-            let nombreMystere = Math.floor(Math.random() * (max + 1));
-            let counter = 0;
-            let response = document.getElementById("response");
-            console.log('fonction async');
-            console.log(nombreMystere);
-            function game () {
-                if (parseInt(response) < nombreMystere) {
-                    counter++;
-                    alert('C\'est plus !')
-                } else if (parseInt(response) > nombreMystere){
-                    counter++; 
-                    alert('C\'est moins !')
-                } else {
-                    counter++;
-                    alert(`Félicitation vous avez trouvé le nombre mystère ! en ${counter} fois`);
-                }    
-            }
-        
-                while(parseInt(response) != nombreMystere) {
-                    response = await lireValeur();
-                    game();
-                }
-    }; play();
-        
+    while(parseInt(response) != game.nombreMystere) {
+        response = await lireValeur();                                                         // LOOP UNTIL NUMBER FOUND
+        game.counter++;
+        gameFunction();
+    }
 
-let value = null;
-
-async function lireValeur() {
-  return new Promise(resolve => {
-    
-    const idInterval = setInterval(() => {
-      if (value !== null) {
-        clearInterval(idInterval);
-
-        // pour avoir le temps de voir le formulaire disparaître avant l'affichage d'un éventuel alert
-        setTimeout(() => {
-            resolve(value);
-            value = null;
-        }, 50);
-      }
-    }, 500);
-
-  });
-}
+    function gameFunction () {
+        if (parseInt(response) < game.nombreMystere) {
+            const tall = `Le nombre secret est plus grand que ${response}`;
+            displayClue(tall);                                                                  // FONCTION WITH GAME CONDITION
+        } else if (parseInt(response) > game.nombreMystere){
+            const little = `Le nombre secret est plus petit que ${response}\n`;
+            displayClue(little);
+        } else {
+            const finish = `Félicitation vous avez trouvé le nombre mystère ${game.nombreMystere} ! en ${game.counter++} fois`;
+            displayClue(finish);
+            removeForm();
+            transitionForm();
+        }
+    }
+}; play();
