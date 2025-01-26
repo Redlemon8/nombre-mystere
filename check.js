@@ -1,129 +1,70 @@
-const gameStep = document.querySelector('h2');
-const containerElement = document.getElementById('start-game');
+import { form } from "./form.js";
 
-const easyMode = document.createElement('button');
-const intermediateMode = document.createElement('button');
-const hardMode = document.createElement('button');
-hardMode.addEventListener('click', addform);
+export const check = {
 
-const labelElement = document.createElement('label');
-labelElement.htmlFor = 'answer';
+    // Génération du nombre mystère
+    game: {
+      nombreMystere: Math.floor(Math.random() * (500 + 1)),
+      counter: 0,
+    },
 
-const inputElement = document.createElement('input');
-inputElement.id = 'answer';
+    init: function() {
+      console.log('check.js started');
+      check.game.nombreMystere;
+        // check.play();
+        // check.lireValeur();
+        // check.gameFunction();
+         form.getNumber();
+    },
+  }
+//     gameFunction: function() {
+//       if (parseInt(response) < check.game.nombreMystere) {
+//           const tall = `Le nombre secret est plus grand que ${response}`;
+//           displayClue(tall);                                                                  // FONCTION WITH GAME CONDITION
+//       } else if (parseInt(response) > check.game.nombreMystere){
+//           const little = `Le nombre secret est plus petit que ${response}\n`;
+//           displayClue(little);
+//       } else {
+//           const finish = `Félicitation vous avez trouvé le nombre mystère ${check.game.nombreMystere} ! en ${check.game.counter++} fois`;
+//           displayClue(finish);
+//           removeForm();
+//           transitionForm();
+//       }
+//   },
 
-const buttonElement = document.createElement('button');
+//    // Vérification de la réponse est du nombre mystère
+//    play: async function () {
+//     let response;
 
-initTheGame ();
+//     while (parseInt(response) !== check.game.nombreMystere) {  // Add attempt limit
+//         response = await lireValeur();
+//         check.game.counter++;
+//         gameFunction(check.game.nombreMystere);  // Pass game object as argument
+//     }
 
+//     return check.game;  // Optionally return game object
+//   },
 
-function initTheGame () {
+//   lireValeur: async function() {
+//     return new Promise((resolve, reject) => {
 
-    console.log('je suis à l\'intérieur de la fonction iniTheGame');
-    const formElement = document.createElement('form');
-    
-    gameStep.textContent = 'Choisissez la difficulté !';
+//       //addform();
 
-    containerElement.appendChild(formElement);
+//       const idInterval = setInterval(() => {
+//         if (value !== null) {
+//           clearInterval(idInterval);
+//           removeForm();
+//           resolve(value);
+//           value = null;
+//         }
+//       }, 500);
 
-    easyMode.type = 'submit';
-    easyMode.textContent = '1 - 100';
-    easyMode.classList = 'buttonMode'
-    intermediateMode.type = 'submit';
-    intermediateMode.textContent = '1 - 250';
-    intermediateMode.classList = 'buttonMode'
-    hardMode.type = 'submit';
-    hardMode.textContent = '1 - 500';
-    hardMode.classList = 'buttonMode'
+//       setTimeout(() => {
+//         clearInterval(idInterval);
+//         //removeForm();
+//         reject(new Error("No value received"));
+//       }, 5000);
+//     });
+//   }
+// };
 
-    formElement.appendChild(easyMode);
-    formElement.appendChild(intermediateMode);
-    formElement.appendChild(hardMode);
-
-    //  let addFormElement = addform();
-    //  addFormElement = document.querySelector('input').style.display = 'none';
-    //  addFormElement = document.querySelector('.buttonElement').style.display = 'none';
-}
-
-
-let value = null;
-async function lireValeur() {
-  return new Promise(resolve => {
-
-   addform ();
-    
-    const idInterval = setInterval(() => {
-      if (value !== null) {
-        clearInterval(idInterval);
-        removeForm();
-        // pour avoir le temps de voir le formulaire disparaître avant l'affichage d'un éventuel alert
-        setTimeout(() => {
-            resolve(value);
-            value = null;
-        }, 50);
-      }
-    }, 500);
-
-  });
-}
-
-
-
-function addform() {
-
-
-    const formElement = document.createElement('form');
-    formElement.id = 'questionForm';
-         
-    buttonElement.type = 'submit';
-    buttonElement.textContent = 'OK';
-    buttonElement.classList = 'submitButton'
-
-    formElement.appendChild(labelElement);
-
-    const inputContainer = document.createElement('div');
-    inputContainer.id = 'inputForm';
-
-    formElement.appendChild(inputContainer);
-    inputContainer.appendChild(inputElement);
-    inputContainer.appendChild(buttonElement);
-
-    const containerElement = document.getElementById('start-game');
-    containerElement.appendChild(formElement);
-    inputElement.focus();
-
-    formElement.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const reponse = document.getElementById('answer').value;
-        value = reponse;
-        });
-
-   }
-
-    function removeForm() {
-        const containerElement = document.getElementById('start-game');
-        containerElement.innerHTML = '';
-    }
-
-   function transitionForm() {
-        const transitionElement = document.createElement('form');
-        transitionElement.id = 'restartQuestion';
-
-        const buttonRestartElement = document.createElement('button');
-        buttonRestartElement.type = 'submit';
-        buttonRestartElement.textContent = 'Rejouer';
-        buttonRestartElement.classList = 'transitionButton';
-
-        const buttonEndElement = document.createElement('button');
-        buttonEndElement.type = 'submit';
-        buttonEndElement.textContent = 'Quiter';
-        buttonEndElement.classList = 'transitionButton';
-        buttonEndElement.addEventListener('click', restart);
-
-        transitionElement.appendChild(buttonRestartElement);
-        transitionElement.appendChild(buttonEndElement);
-
-        const restartContainerElement = document.getElementById('new-game');
-        restartContainerElement.appendChild(transitionElement);
-   }

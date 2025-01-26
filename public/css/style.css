@@ -48,6 +48,14 @@ body {
 
 /* MAIN SECTION */
 
+/* INDEX SECTION */
+
+#new-game {
+    text-align: center;
+}
+
+/* MAIN SECTION */
+
 /* GAME SECTION */
 
 main {
@@ -114,12 +122,25 @@ button:active {
     transform: scale(0.95) translate(5%, 5%);
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 input {
     margin: 2rem 0;
     border-radius: 20px;
     padding: 1rem;
     font-size: 2rem;
     width: 20%;
+    box-shadow: 10px 10px 10px #000000;
+}
+
+#input-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 label {
@@ -127,17 +148,4 @@ label {
     -webkit-text-stroke: 1.4px #000;
     text-shadow: 10px 10px 5px #000000;
     font-size: 2.5rem;
-}
-
-#questionForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.transitionButton {
-    margin: 4rem 0 2rem 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
 }
