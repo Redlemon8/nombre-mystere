@@ -4,7 +4,6 @@ import router from './routes.js';
 
 
 const app = express();
-const port = 3000;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'views'));
@@ -13,18 +12,19 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 //app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.render('index');
-  });
+  res.render('index');
+});
 
 app.use(router);
 
 app.use((req, res) => {
-    res.status(404).render('error404', { path: req.path });
+  res.status(404).render('error404', { path: req.path });
 });
 
-  app.listen(port, () => {
-    console.log(`app listening on port ${port}`);
-  })
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`app listening on port ${port}`);
+});
 
 // const app = {
 
@@ -33,8 +33,8 @@ app.use((req, res) => {
 //     init: function() {
 //         console.log('app.js started');
 //         check.init();
-      // Appelle de la méthode génération nombre mystère
-      // Appelle de la méthode de soumission de formulaire (eventListener) 
+// Appelle de la méthode génération nombre mystère
+// Appelle de la méthode de soumission de formulaire (eventListener) 
     
 
 

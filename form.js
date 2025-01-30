@@ -2,7 +2,9 @@
 
     submit: function () {
         const form = document.getElementById('submit-form');
-         form.addEventListener('submit', getNumber);
+         form.addEventListener('submit', function () {
+            
+         });
     },
 
     //  checkAnswer: function () {
